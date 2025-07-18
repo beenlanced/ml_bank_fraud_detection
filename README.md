@@ -1,87 +1,185 @@
-Predict fair taxi price
+# Machine Learning Bank Fraud Detection
 
-Problem:
+<p>
+  <img alt="Faud Detection" src="imgs/fraud_detection.jpeg"/>
+</p>
 
-This project looks at detecting bank fraud by detecting outliers or anomalies from unlabled bank transactions.
+[img source: Fraud Detection Software for Banks | SQN Banking Systems](https://sqnbankingsystems.com/blog/fraud-detection-software-for-banks/)
 
-Anti-Money Laundering (AML) and fraud analytics require one to consider several factors when building production based systems.
+## Project Description
 
-We have to consider the **limitations of the financial institution**. For example, how up to date are the systems of the institution as it is important to understand will new technology be needed to handle all of the possible feature information that machine learning (ML) models can capture and can the current systems handle real-time decision making.
+This project was inspired by the [How to Apply Unsupervised Anomaly Detection on Bank Transactions](https://www.justintodata.com/unsupervised-anomaly-detection-on-bank-transactions-outliers/) article from authors of https://www.justintodata.com as the inspiration for this project.
 
-**Balancing customer experiences with bank losses**. Like medical doctors, we should do no harm. Alerts generated from ML models should not impact legit customers too much. At best, inconveniences should inspire a sense of confidence that the institution is looking out for the well-being of its customers. It is standard that banks and financial institutions will have to take on some losses, but tools should help identify the line between customer annoyance and mitigating business losses.
+Anti-Money Laundering (AML) and fraud analytics require consideration of several factors when building production based detection systems.
 
-Lastly, **understand the operation teams capacity**. While, the ML system can send anomalous transactions to agents for follow-up for further investigation and support. A priortization scheme may need to be implemented first to optimize mitigating large accounts and larger losses first. An unfortunate consequence, is that small, infrequent irregular cases may not get investigated because they do not meet largeness thresholds.
+For one, there is the consideration of the **limitations of the financial institution**. For example, how up to date are the systems of the institution as it is important to understand will new technology be needed to handle all of the possible feature information that machine learning (ML) models can capture. At the same time, can the current systems handle real-time decision making?
 
-### The problem
+**Balancing customer experiences with bank losses**. Like medical doctors, ML detection applications should do no harm. Alerts generated from ML models should limit the impact to legit customers. At best, inconveniences should inspire a sense of confidence that the institution is looking out for the well-being of its customers. It is standard that banks and financial institutions will have to take on some losses, but tools should help identify the limits between customer annoyance and mitigating business losses.
 
-This project focuses on creating a Machine Learning model to identify the anomolous events, which would then be sent to operation and support teams for futher investigation. It presents a method for anomaly detection using the technique fo Isolation Forests.
+Lastly, **understand the operation teams capacity**. While, the ML system can send anomalous transactions to agents for follow-up for further investigation and support. A priortization scheme may need to be implemented first to optimize mitigating large accounts and larger losses first. An unfortunate consequence is that small, infrequent cases may not get investigated because they do not meet largeness thresholds.
 
-### Why Isolation Forest?
+### This Project's Problem Objective
+
+This project looks at detecting bank fraud by identifying outliers or anomalies from unlabeled bank transactions. Unlabeled refers to the fact that data does not possess any prior sort of pre-existing markers that a transaction is fraudulent or not. It focuses on creating a ML model to identify the anomolous events (i.e., labeling transactions as anomalous/fradulent or not), which would then be sent to operation and support teams for futher investigation. It presents a method for anomaly detection using `Isolation Forests`.
+
+#### Why Isolation Forest?
 
 According to [Wikipedia](https://en.wikipedia.org/wiki/Isolation_forest):
 
-The Isolation Forest (iForest) algorithm took advantage of the attributes of anomalies being “few and different”, they are easier to “isolate” compared to normal points. So instead of trying to build a model of normal instances, it explicitly isolates anomalous points in the dataset.
+The Isolation Forest algorithm takes advantage of the attributes of anomalies being “few and different”. They are easier to “isolate” compared to normal points. So instead of trying to build a model of normal instances, it explicitly isolates anomalous points in the dataset.
 
-The main advantage of this approach is the possibility of exploiting sampling techniques to an extent that is not allowed to the profile-based methods, creating a very fast algorithm with a low memory demand.
+The main advantage of this approach is the possibility of exploiting sampling techniques to an extent that is not allowed to the profile-based methods, creating a very fast algorithm with low memory demand.
 
-Isolation Forest is an efficient and simple algorithm used for anomaly detection which makes it a popular choice in industries like cybersecurity, finance and healthcare. It identifies outliers in large datasets by isolating them through binary partitioning which requires minimal computational overhead. This ability to quickly finding anomalies is important in applications where detecting unusual patterns is key to safeguarding against risks or identifying hidden insights.
+Isolation Forest is an efficient and simple algorithm used for anomaly detection which makes it a popular choice in industries like cybersecurity, finance and healthcare. It identifies outliers in large datasets by isolating them through binary partitioning which requires minimal computational overhead. This ability to quickly find anomalies is important in applications where detecting unusual patterns is key to safeguarding against risks or identifying hidden insights.
 
-Key Concepts in Isolation Forest
-Let's see some key concepts that define Isolation Forest:
+Key concepts of the Isolation Forest:
 
-- `Isolation:` The algorithm isolates anomalies by focusing on their differences from normal data points rather than their similarities. Anomalies are typically rare and distinct from the majority helps in making them easier to isolate.
+- `Isolation:` The algorithm isolates anomalies by focusing on their differences from normal data points rather than their similarities. Anomalies are typically rare and distinct from the majority which helps in making them easier to isolate.
 
-- `Partitioning:` Data is split by randomly selecting features and using random values to partition the data. This helps in efficiently isolating anomalies from normal data.
+- `Partitioning:` Data is split by randomly selecting features and using random values to partition the data. This splitting helps in efficiently isolating anomalies from normal data.
 
 - `Anomaly Score:` It measures how easily a data point can be isolated. Points that require fewer splits to isolate are considered anomalies and assigned higher scores.
 
-### What this Project does speciffically Specifically
+### What this Project Does Specifically
+
+The project:
 
 - Loads and inspects the bank data
 - Preprocesses/cleans the data
-- Cluster the data using unsupervised learning algorithm: [Isolation Forest](https://en.wikipedia.org/wiki/Isolation_forest)
-- Identify anomalies and outliers
+- Clusters the data using an unsupervised learning algorithm: [Isolation Forest](https://en.wikipedia.org/wiki/Isolation_forest)
+- Identifies anomalies and outliers
 - Visualizes results using Seaborn
 
-## acknowledge:
+### The Project Results
 
-- [How to apply Unsupervised Anomaly Detection on bank transactions](https://www.justintodata.com/unsupervised-anomaly-detection-on-bank-transactions-outliers/) from authors of https://www.justintodata.com as the inspiration for this project.
+The Isolation Forest model reveals bank transaction anomalies from normal transactions as shown in the figure below.
 
-A pretty handy tutorial on [Isolation Forest for Outlier Detection with Python](https://www.youtube.com/watch?v=O9VvmWj-JAk)
+<p>
+  <img alt="Anomaly Results" src="imgs/inliers_vs_outliers.png"/>
+</p>
 
-dataset
-[1999 Czech Financial Dataset - Real Anonymized Transactions](https://data.world/lpetrocelli/czech-financial-dataset-real-anonymized-transactions)
+Once anomalous transactions are identified, in a production environment, they would be subsequently be examined by support and bank operation teams prior to consultation with bank customers.
 
-using the transaction csv file
+The project shows how the ML detection mechanism would be a starting point for mitigating and eventually preventing bank fraud based on unsupervised data.
 
-In this notebook, I will detect outliers using the unsupervised learning algorithm: [Isolation Forest](https://en.wikipedia.org/wiki/Isolation_forest).
+---
 
-### Why Isolation Forest?
+## Objective
 
-According to [Wikipedia](https://en.wikipedia.org/wiki/Isolation_forest):
+The project contains the key elements:
 
-The Isolation Forest (iForest) algorithm took advantage of the attributes of anomalies being “few and different”, they are easier to “isolate” compared to normal points. So instead of trying to build a model of normal instances, it explicitly isolates anomalous points in the dataset.
+- `FacetGrid` Seaborn figure type for visualization,
+- `Git` (version control),
+- `Isolation Forest` algorithm for anomaly detection,
+- `Jupyter` Python coded notebooks,
+- `Numpy` for arrays and numerical operations,
+- `Pandas` for dataframe usage,
+- `Python` the standard modules,
+- `Scikit-Learn` to get training and test datasets and the Isolation Forest algorithm,
+- `Seaborn` for visualizations, and
+- `uv` package management including use of `ruff` for linting and formatting
 
-The main advantage of this approach is the possibility of exploiting sampling techniques to an extent that is not allowed to the profile-based methods, creating a very fast algorithm with a low memory demand.
+## Tech Stack
 
-Isolation Forest is an efficient and simple algorithm used for anomaly detection which makes it a popular choice in industries like cybersecurity, finance and healthcare. It identifies outliers in large datasets by isolating them through binary partitioning which requires minimal computational overhead. This ability to quickly finding anomalies is important in applications where detecting unusual patterns is key to safeguarding against risks or identifying hidden insights.
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)
+![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
+![Numpy](https://img.shields.io/badge/Numpy-777BB4?style=for-the-badge&logo=numpy&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=fff)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
-Key Concepts in Isolation Forest
-Let's see some key concepts that define Isolation Forest:
+![Scikit-Learn](https://img.shields.io/badge/scikit_learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
-- `Isolation:` The algorithm isolates anomalies by focusing on their differences from normal data points rather than their similarities. Anomalies are typically rare and distinct from the majority helps in making them easier to isolate.
+---
 
-- `Partitioning:` Data is split by randomly selecting features and using random values to partition the data. This helps in efficiently isolating anomalies from normal data.
+## Getting Started
 
-- `Anomaly Score:` It measures how easily a data point can be isolated. Points that require fewer splits to isolate are considered anomalies and assigned higher scores.
+Here are some instructions to help you set up this project locally.
 
-A pretty handy tutorial on [Isolation Forest for Outlier Detection with Python](https://www.youtube.com/watch?v=O9VvmWj-JAk)
+---
 
-Uses:
-`IForest` Isolation Forest (iForest) algorithm for anomaly detection
-`FacetGrid` seaborn figure type for visualization.
-`PyOD` a comprehensive but easy-to-use Python library for detecting anomalies in multivariate data and for plotting resutls
+## Installation Steps
 
-### Using a PyOD Visualization tool
+- The Python version used for this project is `Python 3.12` to be compatible with some of the other packages,
 
-taken from [src](https://github.com/yzhao062/pyod/blob/master/examples/compare_all_models.py)
+### Clone the Repo
+
+1. Clone the repo (or download it as a zip file):
+
+   ```bash
+   git clone https://github.com/beenlanced/ml_bank_fraud_detection.git
+   ```
+
+2. Create a virtual environment named `.venv` using `uv` Python version 3.12:
+
+   ```bash
+   uv venv --python=3.12
+   ```
+
+3. Activate the virtual environment: `.venv`
+
+   On macOs and Linux:
+
+   ```bash
+   source .venv/bin/activate #mac
+   ```
+
+   On Windows:
+
+   ```bash
+    # In cmd.exe
+    venv\Scripts\activate.bat
+   ```
+
+4. Install packages using `pyproject.toml` or (see special notes section)
+
+   ```bash
+   uv pip install -r pyproject.toml
+   ```
+
+### Running the Codeded Examples
+
+1. **Run the Python Coded Jupyter Notebooks**
+
+---
+
+## Data Set
+
+[1999 Czech Financial Data Set - Real Anonymized Transactions](https://data.world/lpetrocelli/czech-financial-dataset-real-anonymized-transactions) using the transaction csv file.
+
+Attribute description of the data set:
+
+<p>
+  <img alt="Czech Financial Data Set Attribute Description" src="imgs/data_description.png"/>
+</p>
+
+---
+
+### Final Words
+
+Thanks for visiting.
+
+Give the project a star (⭐) if you liked it or if it was helpful to you!
+
+You've `beenlanced`! 😉
+
+---
+
+## Acknowledgements
+
+I would like to extend my gratitude to all the individuals and organizations who helped in the development and success of this project. Your support, whether through contributions, inspiration, or encouragement, have been invaluable. Thank you.
+
+Specifically, I would like to acknowledge:
+
+- [How to handle Imbalanced Data in machine learning classification](https://www.justintodata.com/imbalanced-data-machine-learning-classification/) from authors of https://www.justintodata.com as the inspiration for this project.
+
+- A pretty handy tutorial on [Isolation Forest for Outlier Detection with Python](https://www.youtube.com/watch?v=O9VvmWj-JAk)
+
+- [Hema Kalyan Murapaka](https://www.linkedin.com/in/hemakalyan) and [Benito Martin](https://martindatasol.com/blog) for sharing their README.md templates upon which I have derived my README.md.
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details
